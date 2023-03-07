@@ -12,3 +12,21 @@ const connection = mysql.createConnection({
     password: "",
     database: "4PIN2_glosowanie"
 });
+
+app.listen(port, () => {
+    console.log("Server works");
+});
+
+// ==============
+
+function sqlSelectAll() {
+    connection.connect();
+
+    const queryText = "SELECT * FROM kandydaci;"
+    connection.query(queryText, (error, results, fields) => {
+        if (error) throw error;
+        console.log(results);
+    })
+}
+
+sqlSelectAll();
