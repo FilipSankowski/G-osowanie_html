@@ -7,26 +7,26 @@ const app = express();
 app.use(cors());
 
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "4PIN2_glosowanie"
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "4PIN2_glosowanie"
 });
 
 app.listen(port, () => {
-    console.log("Server works");
+  console.log("Server works");
 });
 
 // ==============
 
 function sqlSelectAll() {
-    connection.connect();
+  connection.connect();
 
-    const queryText = "SELECT * FROM kandydaci;"
-    connection.query(queryText, (error, results, fields) => {
-        if (error) throw error;
-        console.log(results);
-    })
+  const queryText = "SELECT * FROM kandydaci;"
+  connection.query(queryText, (error, results, fields) => {
+  	if (error) throw error;
+  	console.log(results);
+  })
 }
 
 sqlSelectAll();
