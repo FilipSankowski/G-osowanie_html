@@ -2,8 +2,12 @@ votePageScript();
 
 // ==================
 async function votePageScript() {
+  const formDest = document.getElementById("voteForm");
   const candidates = await getCandidates();
-  console.log(candidates);
+  //console.log(candidates);
+
+  formDest.appendChild(makeSelectField(candidates));
+  formDest.appendChild(makeSubmitButton(submitForm));
 }
 
 async function getCandidates() {
@@ -24,3 +28,33 @@ async function getCandidates() {
   //console.log(results);
   return results;
 };
+
+function makeSubmitButton(onSubmit) {
+  const button = document.createElement("button");
+  button.onclick = onSubmit;
+  button.innerHTML = "Zagłosuj";
+
+  return button;
+}
+
+function makeSelectField(candidateArray) {
+  const selectField = document.createElement("select");
+  selectField.setAttribute("id", "selectField");
+
+  for (candidate of candidateArray) {
+    const optText = `${candidate.imie} ${candidate.nazwisko} z partii "${candidate.partia}"`
+
+    const option = document.createElement("option");
+    option.setAttribute("value", candidate.id);
+    option.innerHTML = optText;
+
+    selectField.appendChild(option);
+  }
+
+  return selectField;
+}
+
+function submitForm() {
+  const value = document.getElementById("selectField").value;
+  console.log(`Value: ${value}`);
+}
