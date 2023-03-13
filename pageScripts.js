@@ -3,7 +3,9 @@ async function votePageScript() {
   const candidates = await getCandidates();
   //console.log(candidates);
 
-  formDest.appendChild(makeSelectField(candidates));
+  formDest.appendChild(makeInputField("imie", "Podaj imie:"));
+  formDest.appendChild(makeInputField("nazwisko", "Podaj nazwisko:"));
+  formDest.appendChild(makeSelectField("kandydat", candidates));
   formDest.appendChild(makeSubmitButton(submitForm));
 }
 
@@ -34,9 +36,9 @@ function makeSubmitButton(onSubmit) {
   return button;
 }
 
-function makeSelectField(candidateArray) {
+function makeSelectField(id, candidateArray) {
   const selectField = document.createElement("select");
-  selectField.setAttribute("id", "selectField");
+  selectField.setAttribute("id", id);
 
   for (candidate of candidateArray) {
     const optText = `${candidate.imie} ${candidate.nazwisko} z partii "${candidate.partia}"`
@@ -51,9 +53,20 @@ function makeSelectField(candidateArray) {
   return selectField;
 }
 
+function makeInputField(id, placeholder) {
+  const inputField = document.createElement("input");
+  inputField.setAttribute("type", "text");
+  inputField.setAttribute("id", id);
+  inputField.setAttribute("placeholder", placeholder);
+
+  return inputField;
+}
+
 function submitForm() {
-  const value = document.getElementById("selectField").value;
+  const imie = document.getElementById("imie").value;
+  const nazwisko = document.getElementById("nazwisko").value;
+  const kandydat = document.getElementById("kandydat").value;
   const url = 'http://127.0.0.1:3000/insertVote';
   
-  fetch(`${url}/${value}`);
+  fetch(`${url}/${imie}/${nazwisko}/${kandydat}`);
 }

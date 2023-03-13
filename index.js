@@ -33,8 +33,11 @@ function sqlConnection() {
 
   });
 
-  app.get('/insertVote/:value', (req, res) => {
-    const value = req.params.value;
-    console.log(value);
+  app.get('/insertVote/:imie/:nazwisko/:kandydat', (req, res) => {
+    const imie = req.params.imie;
+    const nazwisko = req.params.nazwisko;
+    const kandydat = req.params.kandydat;
+    console.log(imie + nazwisko + kandydat);
+    const query = "INSERT"
   })
 };
