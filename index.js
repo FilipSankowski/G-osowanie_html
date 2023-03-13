@@ -17,21 +17,24 @@ app.listen(port, () => {
   console.log("Server works");
 });
 
+sqlConnection();
 // ==============
 
-function sqlSelectAll() {
+function sqlConnection() {
   connection.connect();
 
-  const queryText = "SELECT * FROM kandydaci;"
-  connection.query(queryText, (error, results, fields) => {
-  	if (error) throw error;
+  app.get('/selectAll', (req, res) => {
+    const queryText = "SELECT * FROM kandydaci;"
 
-    app.get('/selectAll', (req, res) => {
-      //console.log(results);
+    connection.query(queryText, (error, results, fields) => {
+  	  if (error) throw error;
       res.send(results);
     });
 
   });
-};
 
-sqlSelectAll();
+  app.get('/insertVote/:value', (req, res) => {
+    const value = req.params.value;
+    console.log(value);
+  })
+};

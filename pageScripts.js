@@ -1,6 +1,3 @@
-votePageScript();
-
-// ==================
 async function votePageScript() {
   const formDest = document.getElementById("voteForm");
   const candidates = await getCandidates();
@@ -56,5 +53,7 @@ function makeSelectField(candidateArray) {
 
 function submitForm() {
   const value = document.getElementById("selectField").value;
-  console.log(`Value: ${value}`);
+  const url = 'http://127.0.0.1:3000/insertVote';
+  
+  fetch(`${url}/${value}`);
 }
