@@ -69,4 +69,5 @@ function submitForm() {
   const url = 'http://127.0.0.1:3000/insertVote';
   
   fetch(`${url}/${imie}/${nazwisko}/${kandydat}`);
+  alert("Głos oddany");
 }

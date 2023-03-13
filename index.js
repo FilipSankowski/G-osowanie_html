@@ -37,7 +37,10 @@ function sqlConnection() {
     const imie = req.params.imie;
     const nazwisko = req.params.nazwisko;
     const kandydat = req.params.kandydat;
-    console.log(imie + nazwisko + kandydat);
-    const query = "INSERT"
+
+    const queryText = `INSERT INTO glosujacy (imie, nazwisko, id_kandydata) VALUES ('${imie}', '${nazwisko}', '${kandydat}');`;
+    connection.query(queryText, (error, results, fields) => {
+  	  if (error) throw error;
+    });
   })
 };
