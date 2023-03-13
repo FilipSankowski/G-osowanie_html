@@ -7,7 +7,7 @@ body {
   flex-flow: column nowrap;
 }
 
-.voteForm {
+.voteForm, .resultDiv {
   background-color: #777777;
   text-align: center;
   justify-content: center;

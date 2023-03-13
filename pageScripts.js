@@ -11,7 +11,8 @@ async function votePageScript() {
 
 async function adminPageScript() {
   const votes = await getURL('http://127.0.0.1:3000/selectVotes');
-  console.log(votes);
+  //console.log(votes);
+  displayVotes(votes);
 }
 
 async function getURL(url) {
@@ -74,4 +75,16 @@ function submitForm() {
   
   fetch(`${url}/${imie}/${nazwisko}/${kandydat}`);
   alert("Głos oddany");
+}
+
+function displayVotes(voteResults) {
+  const divDest = document.getElementById("divDest");
+
+  for (partia of voteResults) {
+    let div = document.createElement("div");
+    div.setAttribute("class", "resultDiv");
+    div.innerHTML = `Ilość głosów uzyskanych przez partię "${partia.partia}": ${partia.oddaneGlosy}`
+
+    divDest.appendChild(div);
+  }
 }
