@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "4PIN2_glosowanie"
+  database: "glosowanie"
 });
 
 app.listen(port, () => {
@@ -25,8 +25,13 @@ function sqlSelectAll() {
   const queryText = "SELECT * FROM kandydaci;"
   connection.query(queryText, (error, results, fields) => {
   	if (error) throw error;
-  	console.log(results);
-  })
-}
+
+    app.get('/selectAll', (req, res) => {
+      //console.log(results);
+      res.send(results);
+    });
+
+  });
+};
 
 sqlSelectAll();
