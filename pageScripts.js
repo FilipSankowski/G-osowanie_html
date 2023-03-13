@@ -1,6 +1,6 @@
 async function votePageScript() {
   const formDest = document.getElementById("voteForm");
-  const candidates = await getCandidates();
+  const candidates = await getURL('http://127.0.0.1:3000/selectCandidates');
   //console.log(candidates);
 
   formDest.appendChild(makeInputField("imie", "Podaj imie:"));
@@ -9,8 +9,12 @@ async function votePageScript() {
   formDest.appendChild(makeSubmitButton(submitForm));
 }
 
-async function getCandidates() {
-  const url = 'http://127.0.0.1:3000/selectAll';
+async function adminPageScript() {
+  const votes = await getURL('http://127.0.0.1:3000/selectVotes');
+  console.log(votes);
+}
+
+async function getURL(url) {
   let results;
 
   try {

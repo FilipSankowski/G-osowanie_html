@@ -23,7 +23,7 @@ sqlConnection();
 function sqlConnection() {
   connection.connect();
 
-  app.get('/selectAll', (req, res) => {
+  app.get('/selectCandidates', (req, res) => {
     const queryText = "SELECT * FROM kandydaci;"
 
     connection.query(queryText, (error, results, fields) => {
@@ -41,6 +41,15 @@ function sqlConnection() {
     const queryText = `INSERT INTO glosujacy (imie, nazwisko, id_kandydata) VALUES ('${imie}', '${nazwisko}', '${kandydat}');`;
     connection.query(queryText, (error, results, fields) => {
   	  if (error) throw error;
+    });
+  })
+
+  app.get('/selectVotes', (req, res) => {
+    const queryText = `SELECT kandydaci.partia, COUNT(glosujacy.id_kandydata) as oddaneGlosy FROM kandydaci LEFT JOIN glosujacy ON glosujacy.id_kandydata = kandydaci.id GROUP BY kandydaci.partia;`
+  
+    connection.query(queryText, (error, results, fields) => {
+  	  if (error) throw error;
+      res.send(results);
     });
   })
 };
