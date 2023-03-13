@@ -6,3 +6,11 @@ body {
   display: flex;
   flex-flow: column nowrap;
 }
+
+.voteForm {
+  background-color: #777777;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
