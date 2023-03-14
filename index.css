@@ -1,5 +1,5 @@
 body {
-  background-color: #666666;
+  background-color: #999999;
 }
 
 .flexContainer {
@@ -8,9 +8,16 @@ body {
 }
 
 .voteForm, .resultDiv {
-  background-color: #777777;
+  background-color: #aaaaaa;
   text-align: center;
   justify-content: center;
   align-items: center;
   align-content: center;
+  margin: 0.5%;
+}
+
+#voteResultsChart {
+  align-self: center;
+  background-color: #aaaaaa;
+  margin: 0.5%;
 }
