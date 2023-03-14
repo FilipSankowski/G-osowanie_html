@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "glosowanie"
+  database: "4PIN2_glosowanie"
 });
 
 app.listen(port, () => {
