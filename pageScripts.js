@@ -11,7 +11,8 @@ async function votePageScript() {
 
 async function adminPageScript() {
   const votes = await getURL('http://127.0.0.1:3000/selectVotes');
-  //console.log(votes);
+  const voters = await getURL('http://127.0.0.1:3000/selectVoters')
+  console.log(voters);
   displayVotes(votes);
   makeChart(votes);
 

@@ -51,5 +51,14 @@ function sqlConnection() {
   	  if (error) throw error;
       res.send(results);
     });
+  });
+
+  app.get('/selectVoters', (req, res) => {
+    const queryText = `SELECT glosujacy.imie, glosujacy.nazwisko, kandydaci.partia FROM glosujacy LEFT JOIN kandydaci ON glosujacy.id_kandydata = kandydaci.id`
+  
+    connection.query(queryText, (error, results, fields) => {
+  	  if (error) throw error;
+      res.send(results);
+    });
   })
 };
