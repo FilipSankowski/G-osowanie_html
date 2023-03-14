@@ -7,13 +7,15 @@ async function votePageScript() {
   formDest.appendChild(makeInputField("nazwisko", "Podaj nazwisko:"));
   formDest.appendChild(makeSelectField("kandydat", candidates));
   formDest.appendChild(makeSubmitButton(submitForm));
-}
+};
 
 async function adminPageScript() {
   const votes = await getURL('http://127.0.0.1:3000/selectVotes');
   //console.log(votes);
   displayVotes(votes);
-}
+  makeChart(votes);
+
+};
 
 async function getURL(url) {
   let results;
@@ -39,7 +41,7 @@ function makeSubmitButton(onSubmit) {
   button.innerHTML = "Zagłosuj";
 
   return button;
-}
+};
 
 function makeSelectField(id, candidateArray) {
   const selectField = document.createElement("select");
@@ -56,7 +58,7 @@ function makeSelectField(id, candidateArray) {
   }
 
   return selectField;
-}
+};
 
 function makeInputField(id, placeholder) {
   const inputField = document.createElement("input");
@@ -65,7 +67,7 @@ function makeInputField(id, placeholder) {
   inputField.setAttribute("placeholder", placeholder);
 
   return inputField;
-}
+};
 
 function submitForm() {
   const imie = document.getElementById("imie").value;
@@ -75,7 +77,7 @@ function submitForm() {
   
   fetch(`${url}/${imie}/${nazwisko}/${kandydat}`);
   alert("Głos oddany");
-}
+};
 
 function displayVotes(voteResults) {
   const divDest = document.getElementById("divDest");
@@ -87,4 +89,4 @@ function displayVotes(voteResults) {
 
     divDest.appendChild(div);
   }
-}
+};
